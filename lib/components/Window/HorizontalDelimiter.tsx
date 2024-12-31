@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { DimensionsContext } from "./DimensionsContext";
 import { SizeContext } from "lib/components/TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
