@@ -6,7 +6,6 @@ import { ANSI_COLOR } from "lib/ANSI_COLORS";
 interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   labelColor?: ANSI_COLOR;
   backgroundColor?: ANSI_COLOR;
-  children: React.ReactNode;
 }
 
 /**
@@ -16,6 +15,7 @@ interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function Label({
   labelColor,
   backgroundColor,
+  style,
   children,
   ...props
 }: LabelProps) {
@@ -30,6 +30,7 @@ export function Label({
       style={{
         color: palette[labelColor || labelColorInherit],
         backgroundColor: palette[backgroundColor || backgroundColorInherit],
+        ...style,
       }}
       {...props}
     >

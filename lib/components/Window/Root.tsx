@@ -7,8 +7,9 @@ import { DimensionsContext } from "./DimensionsContext";
 import { Shade } from "lib/components/Shade";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 import { BackgroundColorContext } from "./BackgroundColorContext";
+import { Border, BorderProps } from "./Border";
 
-interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
+interface RootProps extends BorderProps {
   height: number;
   width: number;
   top?: number;
@@ -18,7 +19,6 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   shade?: { shade: SHADE; color: ANSI_COLOR };
   backgroundColor?: ANSI_COLOR;
   shadow?: boolean;
-  children: React.ReactNode;
 }
 
 export function Root({
@@ -32,6 +32,7 @@ export function Root({
   bottom = 0,
   children,
   shadow = true,
+  style,
   ...props
 }: RootProps) {
   const { chHeight, chWidth, tWidth, tHeight } = useContext(SizeContext);
@@ -56,8 +57,8 @@ export function Root({
           : "none",
         height: chHeight * height,
         width: chWidth * width,
+        ...style,
       }}
-      {...props}
     >
       {shade && <Shade {...{ height, width }} {...shade} />}
       <BackgroundColorContext.Provider value={backgroundColor}>
@@ -68,7 +69,7 @@ export function Root({
               height: height,
             }}
           >
-            {children}
+            <Border {...props}>{children}</Border>
           </ContentDimensionsContext.Provider>
         </DimensionsContext.Provider>
       </BackgroundColorContext.Provider>

@@ -4,7 +4,6 @@ import { RegisterHotKeyContext } from "lib/components/TUIRoot/RegisterHotKeyCont
 interface EntrieProps extends React.HTMLAttributes<HTMLButtonElement> {
   hotKey: string;
   callback: () => void;
-  children: React.ReactNode;
 }
 
 /**

@@ -35,7 +35,6 @@ export enum ANSI_COLOR {
   BRIGHT_WHITE = "BRIGHT_WHITE",
 }
 
-//!INFO: used by default
 export const ANSI_COLORS_VGA = {
   BLACK: "rgb(0, 0, 0)",
   RED: "rgb(170, 0, 0)",
@@ -117,3 +116,11 @@ export const ANSI_COLORS_XTERM = {
   BRIGHT_CYAN: "rgb(0, 255, 255)",
   BRIGHT_WHITE: "rgb(255, 255, 255)",
 } as ANSI_COLORS;
+
+export const PALETTES = {
+  VGA: ANSI_COLORS_VGA,
+  XP: ANSI_COLORS_XP,
+  POWER_SHELL: ANSI_COLORS_POWER_SHELL,
+  UBUNTU: ANSI_COLORS_UBUNTU,
+  XTERM: ANSI_COLORS_XTERM,
+} as const;

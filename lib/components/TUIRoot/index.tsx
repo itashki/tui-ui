@@ -14,7 +14,6 @@ interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   fontFamily?: string;
   backgroundColor?: ANSI_COLOR;
   shade?: { shade: SHADE; color: ANSI_COLOR };
-  style?: React.CSSProperties;
 }
 
 const rootStyle = {

@@ -7,11 +7,7 @@ import { DimensionsContext } from "./DimensionsContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 import { BorderContext } from "./BorderContext";
 
-interface BorderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-}
-
-interface BorderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BorderProps extends React.HTMLAttributes<HTMLDivElement> {
   borderStyle?: BORDER_TYPE;
   margin?: number;
   marginTop?: number;
@@ -195,6 +191,10 @@ export function Border({
             paddingRight: paddingRight ?? padding,
             borderStyle,
             borderColor,
+            marginTop: marginTop ?? margin,
+            marginBottom: marginBottom ?? margin,
+            marginLeft: marginLeft ?? margin,
+            marginRight: marginRight ?? margin,
           }}
         >
           {children}

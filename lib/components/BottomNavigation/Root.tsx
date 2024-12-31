@@ -8,7 +8,6 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   hotKeyBackgroundColor?: ANSI_COLOR;
   labelColor?: ANSI_COLOR;
   backgroundColor?: ANSI_COLOR;
-  children: React.ReactNode;
 }
 
 /**
@@ -22,6 +21,7 @@ export function Root({
   hotKeyBackgroundColor = ANSI_COLOR.BLACK,
   labelColor = ANSI_COLOR.BLACK,
   backgroundColor = ANSI_COLOR.CYAN,
+  style,
   children,
   ...props
 }: RootProps) {
@@ -39,6 +39,7 @@ export function Root({
         flexWrap: "nowrap",
         overflow: "hidden",
         userSelect: "none",
+        ...style,
       }}
       {...props}
     >

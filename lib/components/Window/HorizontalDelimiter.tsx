@@ -24,6 +24,7 @@ export function HorizontalDelimiter({
   coverPaddingRight = false,
   delimiterColor,
   delimiterStyle = BORDER_TYPE.SINGLE,
+  style,
   ...props
 }: HorizontalDelimiterProps) {
   const { width: contentWidth } = useContext(ContentDimensionsContext);
@@ -55,6 +56,7 @@ export function HorizontalDelimiter({
           -((connectedLeft ? 1 : 0) + (coverPaddingLeft ? paddingLeft : 0)) *
           chWidth,
         userSelect: "none",
+        ...style,
       }}
       {...props}
     >

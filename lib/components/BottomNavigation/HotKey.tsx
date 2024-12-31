@@ -6,7 +6,6 @@ import { ANSI_COLOR } from "lib/ANSI_COLORS";
 interface HotKeyProps extends React.HTMLAttributes<HTMLSpanElement> {
   hotKeyColor?: ANSI_COLOR;
   hotKeyBackgroundColor?: ANSI_COLOR;
-  children: React.ReactNode;
 }
 
 /**
@@ -16,6 +15,7 @@ interface HotKeyProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function HotKey({
   hotKeyColor,
   hotKeyBackgroundColor,
+  style,
   children,
   ...props
 }: HotKeyProps) {
@@ -31,6 +31,7 @@ export function HotKey({
         color: palette[hotKeyColor || hotKeyColorInherit],
         backgroundColor:
           palette[hotKeyBackgroundColor || hotKeyBackgroundColorInherit],
+        ...style,
       }}
       {...props}
     >

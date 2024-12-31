@@ -14,18 +14,16 @@ export const Primary: Story = {
   render: () => (
     <TUIRoot backgroundColor={ANSI_COLOR.BLUE}>
       <Window.Root width={30} height={10} top={10} left={10}>
-        <Window.Border>
-          <Window.Content>
-            ad minim veniam, nisi ut
-            <Window.HorizontalDelimiter
-              coverPaddingLeft={true}
-              coverPaddingRight={true}
-              connectedLeft={true}
-              connectedRight={true}
-            />
-            aliquip ex ea commodo consequat
-          </Window.Content>
-        </Window.Border>
+        <Window.Content>
+          ad minim veniam, nisi ut
+          <Window.HorizontalDelimiter
+            coverPaddingLeft={true}
+            coverPaddingRight={true}
+            connectedLeft={true}
+            connectedRight={true}
+          />
+          aliquip ex ea commodo consequat
+        </Window.Content>
       </Window.Root>
     </TUIRoot>
   ),
