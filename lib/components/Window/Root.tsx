@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { ANSI_COLOR } from "../../ANSI_COLORS";
-import { Border } from "./Border";
 import { SizeContext } from "../TUIRoot/SizeContext";
 import { SHADE } from "../../BOX_DRAWING";
 import { PaletteContext } from "../TUIRoot/PaletteContext";
+import { DimensionsContext } from "./DimensionsContext";
+import { Shade } from "../Shade";
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   height: number;
@@ -50,29 +51,17 @@ export function Root({
         top: `${top * chHeight}px`,
         left: `${left * chWidth}px`,
         boxShadow: shadow
-          ? `${chWidth}px ${chHeight}px ${palette[ANSI_COLOR.BLACK]}`
+          ? `${chWidth * 2}px ${chHeight}px ${palette[ANSI_COLOR.BLACK]}`
           : "none",
+        height: chHeight * height,
+        width: chWidth * width,
       }}
       {...props}
     >
-      {shade && (
-        <div
-          style={{
-            color: palette[shade.color],
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          {Array.from({ length: height }, () => (
-            <>
-              {Array.from({ length: width }, () => shade.shade)}
-              <br />
-            </>
-          ))}
-        </div>
-      )}
-      <Border>{children}</Border>
+      {shade && <Shade {...{ height, width }} {...shade} />}
+      <DimensionsContext.Provider value={{ width, height }}>
+        {children}
+      </DimensionsContext.Provider>
     </div>
   );
 }

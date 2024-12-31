@@ -7,3 +7,4 @@ export { useRegisterHotKey } from "./components/TUIRoot/useRegisterHotKey";
 export { usePalette } from "./components/TUIRoot/usePalette";
 
 export { BottomNavigation } from "./components/BottomNavigation";
+export { Window } from "./components/Window";

@@ -4,6 +4,7 @@ import { ANSI_COLOR, ANSI_COLORS, ANSI_COLORS_VGA } from "../../ANSI_COLORS";
 import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
 import { SHADE } from "../../BOX_DRAWING";
+import { Shade } from "../Shade";
 
 interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   palette?: ANSI_COLORS;
@@ -133,23 +134,7 @@ export function TUIRoot({
       ref={rootRef}
       {...props}
     >
-      {shade && (
-        <div
-          style={{
-            color: palette[shade.color],
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          {Array.from({ length: data.tHeight }, () => (
-            <>
-              {Array.from({ length: data.tWidth }, () => shade.shade)}
-              <br />
-            </>
-          ))}
-        </div>
-      )}
+      {shade && <Shade height={data.tHeight} width={data.tWidth} {...shade} />}
       <SizeContext.Provider value={data}>
         <RegisterHotKeyContext.Provider value={registerHotkey}>
           <PaletteContext.Provider value={palette}>

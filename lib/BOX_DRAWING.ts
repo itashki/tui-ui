@@ -1,7 +1,6 @@
 export enum BORDER_TYPE {
   DOUBLE = "DOUBLE",
   SINGLE = "SINGLE",
-  BOLD = "BOLD",
 }
 
 export const BORDER = {
