@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
-import { SHADE } from "../../BOX_DRAWING";
+import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { SHADE } from "lib/BOX_DRAWING";
 
 interface ShadeProps {
   color: ANSI_COLOR;

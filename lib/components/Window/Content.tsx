@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 
 interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;

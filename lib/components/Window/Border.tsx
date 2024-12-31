@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { BORDER, BORDER_TYPE } from "../../BOX_DRAWING";
-import { SizeContext } from "../TUIRoot/SizeContext";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
+import { BORDER, BORDER_TYPE } from "lib/BOX_DRAWING";
+import { SizeContext } from "lib/components//TUIRoot/SizeContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { DimensionsContext } from "./DimensionsContext";
 
 interface BorderProps extends React.HTMLAttributes<HTMLDivElement> {

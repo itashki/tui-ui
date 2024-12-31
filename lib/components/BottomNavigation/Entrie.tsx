@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { RegisterHotKeyContext } from "../TUIRoot/RegisterHotKeyContext";
+import { RegisterHotKeyContext } from "lib/components/TUIRoot/RegisterHotKeyContext";
 
 interface EntrieProps extends React.HTMLAttributes<HTMLButtonElement> {
   hotKey: string;

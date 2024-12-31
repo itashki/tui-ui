@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ColorsContext } from "./ColorsContext";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
+import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
 interface HotKeyProps extends React.HTMLAttributes<HTMLSpanElement> {
   hotKeyColor?: ANSI_COLOR;

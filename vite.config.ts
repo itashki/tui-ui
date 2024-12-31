@@ -18,6 +18,11 @@ export default defineConfig({
       exclude: ["lib/**/stories.tsx"],
     }),
   ],
+  resolve: {
+    alias: {
+      lib: "/lib",
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "lib/main.ts"),

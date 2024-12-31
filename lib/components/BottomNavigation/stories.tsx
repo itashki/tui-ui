@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { TUIRoot } from "../TUIRoot";
+import { TUIRoot } from "lib/components/TUIRoot";
 import { BottomNavigation } from ".";
 
 const meta: Meta<typeof BottomNavigation.Root> = {

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { TUIRoot } from "../TUIRoot";
+import { TUIRoot } from "lib/components/TUIRoot";
 import { Window } from ".";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
 const meta: Meta<typeof Window.Root> = {
   component: Window.Root,

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { SizeContext } from "../TUIRoot/SizeContext";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
+import { SizeContext } from "lib/components/TUIRoot/SizeContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { ColorsContext } from "./ColorsContext";
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {

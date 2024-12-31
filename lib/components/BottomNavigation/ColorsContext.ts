@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
 export const ColorsContext = createContext<{
   hotKeyColor: ANSI_COLOR;

@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { ANSI_COLOR } from "../../ANSI_COLORS";
-import { SizeContext } from "../TUIRoot/SizeContext";
-import { SHADE } from "../../BOX_DRAWING";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
+import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { SizeContext } from "lib/components/TUIRoot/SizeContext";
+import { SHADE } from "lib/BOX_DRAWING";
+import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { DimensionsContext } from "./DimensionsContext";
-import { Shade } from "../Shade";
+import { Shade } from "lib/components/Shade";
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   height: number;

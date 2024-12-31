@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { SizeContext } from "./SizeContext";
-import { ANSI_COLOR, ANSI_COLORS, ANSI_COLORS_VGA } from "../../ANSI_COLORS";
+import { ANSI_COLOR, ANSI_COLORS, ANSI_COLORS_VGA } from "lib/ANSI_COLORS";
 import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
-import { SHADE } from "../../BOX_DRAWING";
-import { Shade } from "../Shade";
+import { SHADE } from "lib/BOX_DRAWING";
+import { Shade } from "lib/components/Shade";
 
 interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   palette?: ANSI_COLORS;
