@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "ModernDOS";
+  src:
+    local("ModernDOS"),
+    url(../public/fonts/Modern_DOS/ModernDOS8x16.ttf) format("truetype");
+}
