@@ -75,6 +75,8 @@ export function Border({
         width: "100%",
         top: 0,
         left: 0,
+        overflowX: "visible",
+        overflowY: "visible",
         ...style,
       }}
     >
@@ -171,8 +173,20 @@ export function Border({
       </div>
       <ContentDimensionsContext.Provider
         value={{
-          height: height - 2 - (marginTop ?? margin) - (marginBottom ?? margin),
-          width: width - 2 - (marginLeft ?? margin) - (marginRight ?? margin),
+          height:
+            height -
+            2 -
+            (marginTop ?? margin) -
+            (marginBottom ?? margin) -
+            (paddingLeft ?? padding) -
+            (paddingRight ?? padding),
+          width:
+            width -
+            2 -
+            (marginLeft ?? margin) -
+            (marginRight ?? margin) -
+            (paddingLeft ?? padding) -
+            (paddingRight ?? padding),
         }}
       >
         <BorderContext.Provider

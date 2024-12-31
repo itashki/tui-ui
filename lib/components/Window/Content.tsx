@@ -13,7 +13,7 @@ export function Content({
   ...props
 }: ContentProps) {
   const palette = useContext(PaletteContext);
-
+  //!TODO: Implemet scrolling
   return (
     <div
       {...props}
@@ -21,7 +21,8 @@ export function Content({
         width: "100%",
         height: "100%",
         backgroundColor: "transparent",
-        overflow: "scroll",
+        overflowX: "visible",
+        overflowY: "clip",
         color: palette[color],
         ...style,
       }}

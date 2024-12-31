@@ -6,6 +6,7 @@ import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { BORDER, BORDER_TYPE, CONNECTION } from "lib/BOX_DRAWING";
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
+import { ContentDimensionsContext } from "./ContentDimensionsContext";
 
 interface HorizontalDelimiterProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -23,10 +24,11 @@ export function HorizontalDelimiter({
   coverPaddingLeft = false,
   coverPaddingRight = false,
   delimiterColor,
-  delimiterStyle,
+  delimiterStyle = BORDER_TYPE.SINGLE,
   ...props
 }: HorizontalDelimiterProps) {
   const { width } = useContext(DimensionsContext);
+  const { width: contentWidth } = useContext(ContentDimensionsContext);
   const { chWidth, chHeight } = useContext(SizeContext);
   const {
     borderStyle,
@@ -41,7 +43,7 @@ export function HorizontalDelimiter({
     <div
       style={{
         width:
-          (width +
+          (contentWidth +
             (connectedLeft ? 1 : 0) +
             (connectedRight ? 1 : 0) +
             (coverPaddingLeft ? paddingLeft : 0) +
@@ -54,6 +56,7 @@ export function HorizontalDelimiter({
         left:
           -((connectedLeft ? 1 : 0) + (coverPaddingLeft ? paddingLeft : 0)) *
           chWidth,
+        userSelect: "none",
       }}
       {...props}
     >
@@ -61,8 +64,8 @@ export function HorizontalDelimiter({
         (delimiterStyle === borderStyle
           ? BORDER[borderStyle].CROSS_LEFT
           : CONNECTION[borderStyle].CROSS_LEFT)}
-      {BORDER[borderStyle].HORIZONTAL.repeat(
-        width +
+      {BORDER[delimiterStyle].HORIZONTAL.repeat(
+        contentWidth +
         (coverPaddingLeft ? paddingLeft : 0) +
         (coverPaddingRight ? paddingRight : 0),
       )}

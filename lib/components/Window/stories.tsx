@@ -16,13 +16,14 @@ export const Primary: Story = {
       <Window.Root width={30} height={10} top={10} left={10}>
         <Window.Border>
           <Window.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            ad minim veniam, nisi ut
+            <Window.HorizontalDelimiter
+              coverPaddingLeft={true}
+              coverPaddingRight={true}
+              connectedLeft={true}
+              connectedRight={true}
+            />
+            aliquip ex ea commodo consequat
           </Window.Content>
         </Window.Border>
       </Window.Root>
