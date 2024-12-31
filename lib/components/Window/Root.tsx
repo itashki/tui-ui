@@ -5,6 +5,8 @@ import { SHADE } from "lib/BOX_DRAWING";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { DimensionsContext } from "./DimensionsContext";
 import { Shade } from "lib/components/Shade";
+import { ContentDimensionsContext } from "./ContentDimensionsContext";
+import { BackgroundColorContext } from "./BackgroundColorContext";
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   height: number;
@@ -19,7 +21,6 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-//!INFO: Right and bottom has priority over left and top
 export function Root({
   backgroundColor = ANSI_COLOR.WHITE,
   shade,
@@ -59,9 +60,18 @@ export function Root({
       {...props}
     >
       {shade && <Shade {...{ height, width }} {...shade} />}
-      <DimensionsContext.Provider value={{ width, height }}>
-        {children}
-      </DimensionsContext.Provider>
+      <BackgroundColorContext.Provider value={backgroundColor}>
+        <DimensionsContext.Provider value={{ width, height }}>
+          <ContentDimensionsContext.Provider
+            value={{
+              width: width,
+              height: height,
+            }}
+          >
+            {children}
+          </ContentDimensionsContext.Provider>
+        </DimensionsContext.Provider>
+      </BackgroundColorContext.Provider>
     </div>
   );
 }

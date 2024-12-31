@@ -4,6 +4,8 @@ import { SizeContext } from "lib/components//TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { DimensionsContext } from "./DimensionsContext";
+import { ContentDimensionsContext } from "./ContentDimensionsContext";
+import { BorderContext } from "./BorderContext";
 
 interface BorderProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -167,7 +169,23 @@ export function Border({
           ),
         )}
       </div>
-      {children}
+      <ContentDimensionsContext.Provider
+        value={{
+          height: height - 2 - (marginTop ?? margin) - (marginBottom ?? margin),
+          width: width - 2 - (marginLeft ?? margin) - (marginRight ?? margin),
+        }}
+      >
+        <BorderContext.Provider
+          value={{
+            paddingLeft: paddingLeft ?? padding,
+            paddingRight: paddingRight ?? padding,
+            borderStyle,
+            borderColor,
+          }}
+        >
+          {children}
+        </BorderContext.Provider>
+      </ContentDimensionsContext.Provider>
     </div>
   );
 }
