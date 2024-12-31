@@ -27,7 +27,7 @@ export function Entrie({ hotKey, callback, children, ...props }: EntrieProps) {
   }, [ref, callback, hotKey, registerHotKey]);
 
   return (
-    <button ref={ref} {...props}>
+    <button aria-keyshortcuts={hotKey} ref={ref} {...props}>
       {children}
     </button>
   );

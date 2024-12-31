@@ -26,7 +26,11 @@ export function HotKey({
   );
 
   return (
-    <span style={{ color: palette[color], ...style }} {...props}>
+    <span
+      aria-keyshortcuts={hotKey}
+      style={{ color: palette[color], ...style }}
+      {...props}
+    >
       {children}
     </span>
   );
