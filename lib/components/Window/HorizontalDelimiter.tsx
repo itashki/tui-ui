@@ -27,7 +27,6 @@ export function HorizontalDelimiter({
   delimiterStyle = BORDER_TYPE.SINGLE,
   ...props
 }: HorizontalDelimiterProps) {
-  const { width } = useContext(DimensionsContext);
   const { width: contentWidth } = useContext(ContentDimensionsContext);
   const { chWidth, chHeight } = useContext(SizeContext);
   const {
