@@ -1,6 +1,7 @@
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vite";
 // import { resolve } from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { extname, relative, resolve } from "path";
@@ -17,19 +18,22 @@ export default defineConfig({
       include: ["lib"],
       exclude: ["lib/**/stories.tsx"],
     }),
+    tsconfigPaths(),
   ],
-  resolve: {
-    alias: {
-      lib: "/lib",
-    },
-  },
   build: {
     lib: {
       entry: resolve(__dirname, "lib/main.ts"),
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime"],
+      external: [
+        "react",
+        "react/jsx-runtime",
+        "react-dom",
+        "@radix-ui/react-radio-group",
+        "@radix-ui/react-checkbox",
+        "merge-refs",
+      ],
       input: Object.fromEntries(
         glob
           .sync("lib/**/*.{ts,tsx}", {
