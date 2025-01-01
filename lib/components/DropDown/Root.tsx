@@ -7,6 +7,8 @@ type RootProps = React.HTMLAttributes<HTMLDivElement>;
 export function Root({ children, ...props }: RootProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentFocus, setCurrentFocus] = useState(0);
+  const [menuItems, setMenuItems] = useState<HTMLElement[]>([]);
 
   return (
     <div {...props}>
