@@ -5,6 +5,7 @@ import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
 import { SHADE } from "lib/BOX_DRAWING";
 import { Shade } from "lib/components/Shade";
+import mergeRefs from "merge-refs";
 
 interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   palette?: ANSI_COLORS;
@@ -14,6 +15,7 @@ interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   fontFamily?: string;
   backgroundColor?: ANSI_COLOR;
   shade?: { shade: SHADE; color: ANSI_COLOR };
+  ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
 const rootStyle = {
@@ -41,6 +43,7 @@ export function TUIRoot({
   backgroundColor = ANSI_COLOR.BLACK,
   shade,
   style = {},
+  ref = null,
   children,
   ...props
 }: TUIRootProps) {
@@ -130,7 +133,7 @@ export function TUIRoot({
         ...rootStyle,
         ...style,
       }}
-      ref={rootRef}
+      ref={mergeRefs(rootRef, ref)}
       {...props}
     >
       {shade && <Shade height={data.tHeight} width={data.tWidth} {...shade} />}

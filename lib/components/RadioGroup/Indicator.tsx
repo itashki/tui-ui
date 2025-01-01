@@ -8,6 +8,7 @@ interface IndicatorProps extends RadioGroup.RadioGroupIndicatorProps {
   surroundRight?: string;
   checkedCharacter?: string;
   uncheckedCharacter?: string;
+  ref?: React.Ref<HTMLSpanElement | null> | null;
 }
 
 export function Indicator({
@@ -15,6 +16,7 @@ export function Indicator({
   surroundRight = ")",
   checkedCharacter = "*",
   uncheckedCharacter = " ",
+  ref = null,
   ...props
 }: IndicatorProps) {
   const currentValue = useContext(CurrentValueContext);
@@ -22,7 +24,7 @@ export function Indicator({
 
   return (
     <RadioGroup.Indicator asChild {...props}>
-      <span>
+      <span ref={ref}>
         {surroundLeft}
         {currentValue === value ? checkedCharacter : uncheckedCharacter}
         {surroundRight}

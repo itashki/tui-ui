@@ -8,6 +8,7 @@ interface ShadeProps extends React.HTMLAttributes<HTMLDivElement> {
   shade: SHADE;
   height: number;
   width: number;
+  ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
 export function Shade({
@@ -16,6 +17,7 @@ export function Shade({
   height,
   width,
   style,
+  ref = null,
   ...props
 }: ShadeProps) {
   const palette = useContext(PaletteContext);
@@ -29,6 +31,8 @@ export function Shade({
         left: 0,
         ...style,
       }}
+      aria-hidden
+      ref={ref}
       {...props}
     >
       {Array.from({ length: height }, () => (

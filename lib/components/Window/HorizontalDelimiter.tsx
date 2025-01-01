@@ -15,6 +15,7 @@ interface HorizontalDelimiterProps
   delimiterStyle?: BORDER_TYPE;
   coverPaddingLeft?: boolean;
   coverPaddingRight?: boolean;
+  ref?: React.RefObject<HTMLDivElement | null> | null;
 }
 
 export function HorizontalDelimiter({
@@ -24,6 +25,7 @@ export function HorizontalDelimiter({
   coverPaddingRight = false,
   delimiterColor,
   delimiterStyle = BORDER_TYPE.SINGLE,
+  ref = null,
   style,
   ...props
 }: HorizontalDelimiterProps) {
@@ -58,6 +60,7 @@ export function HorizontalDelimiter({
         userSelect: "none",
         ...style,
       }}
+      ref={ref}
       {...props}
     >
       {connectedLeft &&
@@ -66,8 +69,8 @@ export function HorizontalDelimiter({
           : CONNECTION[borderStyle].CROSS_LEFT)}
       {BORDER[delimiterStyle].HORIZONTAL.repeat(
         contentWidth +
-        (coverPaddingLeft ? paddingLeft : 0) +
-        (coverPaddingRight ? paddingRight : 0),
+          (coverPaddingLeft ? paddingLeft : 0) +
+          (coverPaddingRight ? paddingRight : 0),
       )}
       {connectedRight &&
         (delimiterStyle === borderStyle

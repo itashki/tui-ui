@@ -7,6 +7,7 @@ interface HotKeyProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
   hotKey: string;
   callback: () => void;
+  ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
 export function HotKey({
@@ -15,6 +16,7 @@ export function HotKey({
   color = ANSI_COLOR.RED,
   style,
   children,
+  ref,
   ...props
 }: HotKeyProps) {
   const palette = useContext(PaletteContext);
@@ -29,6 +31,7 @@ export function HotKey({
     <span
       aria-keyshortcuts={hotKey}
       style={{ color: palette[color], ...style }}
+      ref={ref}
       {...props}
     >
       {children}

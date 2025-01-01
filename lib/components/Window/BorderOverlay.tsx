@@ -11,6 +11,8 @@ interface BorderOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
   start: number;
   length: number;
   color?: ANSI_COLOR;
+  coverOffset?: number;
+  ref?: React.RefObject<HTMLDivElement | null> | null;
 }
 
 export function BorderOverlay({
@@ -18,8 +20,10 @@ export function BorderOverlay({
   start,
   length,
   color,
+  coverOffset = 0,
   children,
   style,
+  ref = null,
   ...props
 }: BorderOverlayProps) {
   const { marginTop, marginBottom, marginLeft, marginRight, borderColor } =
@@ -32,10 +36,9 @@ export function BorderOverlay({
     case SIDE.TOP:
       return (
         <div
-          {...props}
           style={{
             position: "absolute",
-            top: marginTop * chHeight,
+            top: (marginTop - coverOffset) * chHeight,
             left: (marginLeft + start) * chWidth,
             width: length * chWidth,
             height: chHeight,
@@ -46,6 +49,8 @@ export function BorderOverlay({
             userSelect: "none",
             ...style,
           }}
+          ref={ref}
+          {...props}
         >
           {children}
         </div>
@@ -53,10 +58,9 @@ export function BorderOverlay({
     case SIDE.BOTTOM:
       return (
         <div
-          {...props}
           style={{
             position: "absolute",
-            bottom: (marginBottom + chHeight) * chHeight,
+            bottom: (marginBottom - coverOffset) * chHeight,
             left: (marginLeft + start) * chWidth,
             width: length * chWidth,
             height: chHeight,
@@ -67,6 +71,8 @@ export function BorderOverlay({
             userSelect: "none",
             ...style,
           }}
+          ref={ref}
+          {...props}
         >
           {children}
         </div>
@@ -74,11 +80,10 @@ export function BorderOverlay({
     case SIDE.LEFT:
       return (
         <div
-          {...props}
           style={{
             position: "absolute",
             top: (marginTop + start) * chHeight,
-            left: marginLeft * chWidth,
+            left: (marginLeft - coverOffset) * chWidth,
             width: chWidth,
             height: length * chHeight,
             backgroundColor: palette[backgroundColor],
@@ -88,6 +93,8 @@ export function BorderOverlay({
             userSelect: "none",
             ...style,
           }}
+          ref={ref}
+          {...props}
         >
           {children}
         </div>
@@ -95,11 +102,10 @@ export function BorderOverlay({
     case SIDE.RIGHT:
       return (
         <div
-          {...props}
           style={{
             position: "absolute",
             top: (marginTop + start) * chHeight,
-            right: marginRight * chWidth,
+            right: (marginRight - coverOffset) * chWidth,
             width: chWidth,
             height: length * chHeight,
             backgroundColor: palette[backgroundColor],
@@ -109,6 +115,8 @@ export function BorderOverlay({
             userSelect: "none",
             ...style,
           }}
+          ref={ref}
+          {...props}
         >
           {children}
         </div>

@@ -8,6 +8,7 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   hotKeyBackgroundColor?: ANSI_COLOR;
   labelColor?: ANSI_COLOR;
   backgroundColor?: ANSI_COLOR;
+  ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
 /**
@@ -21,6 +22,7 @@ export function Root({
   hotKeyBackgroundColor = ANSI_COLOR.BLACK,
   labelColor = ANSI_COLOR.BLACK,
   backgroundColor = ANSI_COLOR.CYAN,
+  ref = null,
   style,
   children,
   ...props
@@ -41,6 +43,7 @@ export function Root({
         userSelect: "none",
         ...style,
       }}
+      ref={ref}
       {...props}
     >
       <ColorsContext.Provider

@@ -7,6 +7,7 @@ interface IndicatorProps extends Checkbox.CheckboxIndicatorProps {
   surroundRight?: string;
   checkedCharacter?: string;
   uncheckedCharacter?: string;
+  ref?: React.Ref<HTMLSpanElement | null> | null;
 }
 
 export function Indicator({
@@ -14,13 +15,14 @@ export function Indicator({
   surroundRight = "]",
   checkedCharacter = "X",
   uncheckedCharacter = " ",
+  ref = null,
   ...props
 }: IndicatorProps) {
   const checked = useContext(CheckedContext);
 
   return (
     <Checkbox.Indicator asChild {...props}>
-      <span>
+      <span ref={ref}>
         {surroundLeft}
         {checked ? checkedCharacter : uncheckedCharacter}
         {surroundRight}

@@ -4,28 +4,30 @@ import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 
 interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
+  ref?: React.RefObject<HTMLDivElement | null> | null;
 }
 
 export function Content({
   color = ANSI_COLOR.BLACK,
   children,
   style,
+  ref = null,
   ...props
 }: ContentProps) {
   const palette = useContext(PaletteContext);
-  //!TODO: Implemet scrolling
+  //!TODO: Implement scrolling
   return (
     <div
-      {...props}
       style={{
         width: "100%",
         height: "100%",
         backgroundColor: "transparent",
-        overflowX: "visible",
-        overflowY: "clip",
+        overflow: "visible",
         color: palette[color],
         ...style,
       }}
+      ref={ref}
+      {...props}
     >
       {children}
     </div>

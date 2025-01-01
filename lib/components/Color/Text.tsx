@@ -4,12 +4,13 @@ import { PaletteContext } from "../TUIRoot/PaletteContext";
 
 interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
   color: ANSI_COLOR;
+  ref?: React.Ref<HTMLSpanElement | null> | null;
 }
 
-export function Text({ color, children, style, ...props }: TextProps) {
+export function Text({ color, children, style, ref, ...props }: TextProps) {
   const palette = useContext(PaletteContext);
   return (
-    <span style={{ color: palette[color], ...style }} {...props}>
+    <span style={{ color: palette[color], ...style }} ref={ref} {...props}>
       {children}
     </span>
   );

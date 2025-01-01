@@ -1,6 +1,7 @@
 export enum BORDER_TYPE {
   DOUBLE = "DOUBLE",
   SINGLE = "SINGLE",
+  NONE = "NONE",
 }
 
 export const BORDER = {
@@ -16,6 +17,7 @@ export const BORDER = {
     CROSS_BOTTOM: "╩",
     CROSS_LEFT: "╠",
     CROSS_RIGHT: "╣",
+    BORDER_WIDTH: 1,
   },
   SINGLE: {
     TOP_LEFT: "┌",
@@ -29,6 +31,21 @@ export const BORDER = {
     CROSS_BOTTOM: "┴",
     CROSS_LEFT: "├",
     CROSS_RIGHT: "┤",
+    BORDER_WIDTH: 1,
+  },
+  NONE: {
+    TOP_LEFT: "",
+    TOP_RIGHT: "",
+    BOTTOM_LEFT: "",
+    BOTTOM_RIGHT: "",
+    VERTICAL: "",
+    HORIZONTAL: "",
+    CROSS: "",
+    CROSS_TOP: "",
+    CROSS_BOTTOM: "",
+    CROSS_LEFT: "",
+    CROSS_RIGHT: "",
+    BORDER_WIDTH: 0,
   },
 } as const;
 
@@ -54,6 +71,17 @@ export const CONNECTION = {
     TOP_LEFT: "╒",
     TOP_RIGHT: "╕",
     CROSS: "╪",
+  },
+  NONE: {
+    CROSS_LEFT: "",
+    CROSS_RIGHT: "",
+    CROSS_TOP: "",
+    CROSS_BOTTOM: "",
+    BOTTOM_LEFT: "",
+    BOTTOM_RIGHT: "",
+    TOP_LEFT: "",
+    TOP_RIGHT: "",
+    CROSS: "",
   },
 } as const;
 
