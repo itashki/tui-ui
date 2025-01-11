@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { TUIRoot } from "lib/components/TUIRoot";
-import { TUIWindow } from ".";
+import { TUIWindow } from "../Window";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { Checkbox } from "./Checkbox";
 
 const meta: Meta<typeof TUIWindow.Root> = {
   component: TUIWindow.Root,
@@ -24,14 +25,11 @@ export const Primary: Story = {
         left={10}
       >
         <TUIWindow.Content>
-          ad minim veniam, nisi ut
-          <TUIWindow.HorizontalDelimiter
-            coverPaddingLeft={true}
-            coverPaddingRight={true}
-            connectedLeft={true}
-            connectedRight={true}
-          />
-          aliquip ex ea commodo consequat
+          <div style={{ display: "flex", flexDirection: "column", width: "fit-content" }}>
+            <Checkbox>Option 1</Checkbox>
+            <Checkbox>Option 2</Checkbox>
+            <Checkbox>Option 3</Checkbox>
+          </div>
         </TUIWindow.Content>
       </TUIWindow.Root>
     </TUIRoot>

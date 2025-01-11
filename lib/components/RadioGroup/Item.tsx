@@ -1,10 +1,13 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { ValueContext } from "./ValueContext";
 
-export function Item(props: RadioGroup.RadioGroupItemProps) {
+export function Item({ children, ...props }: RadioGroup.RadioGroupItemProps) {
   return (
-    <ValueContext.Provider value={props.value}>
-      <RadioGroup.Item {...props} />
-    </ValueContext.Provider>
+    <RadioGroup.Item {...props}>
+      (
+      <RadioGroup.Indicator style={{ position: "absolute" }}>
+        *
+      </RadioGroup.Indicator>
+      {" " /* empty space if not checked*/}){children}
+    </RadioGroup.Item>
   );
 }

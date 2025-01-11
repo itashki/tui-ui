@@ -1,5 +1,4 @@
-import { Indicator } from "./Indicator";
+import * as RadixRadioGroup from "@radix-ui/react-radio-group";
 import { Item } from "./Item";
-import { Root } from "./Root";
 
-export const RadioGroup = { Root, Indicator, Item };
+export const RadioGroup = { Root: RadixRadioGroup.Root, Item };
