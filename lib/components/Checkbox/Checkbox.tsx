@@ -1,12 +1,8 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 
-export function Checkbox({
-  children,
-  style,
-  ...props
-}: RadixCheckbox.CheckboxProps) {
+export function Checkbox({ children, ...props }: RadixCheckbox.CheckboxProps) {
   return (
-    <RadixCheckbox.Root {...props} style={{ ...style }}>
+    <RadixCheckbox.Root {...props}>
       [
       <RadixCheckbox.Indicator style={{ position: "absolute" }}>
         X

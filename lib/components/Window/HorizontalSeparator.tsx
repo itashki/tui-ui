@@ -7,7 +7,7 @@ import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 
-interface HorizontalDelimiterProps
+interface HorizontalSeparatorProps
   extends React.HTMLAttributes<HTMLDivElement> {
   connectedRight?: boolean;
   connectedLeft?: boolean;
@@ -18,7 +18,7 @@ interface HorizontalDelimiterProps
   ref?: React.RefObject<HTMLDivElement | null> | null;
 }
 
-export function HorizontalDelimiter({
+export function HorizontalSeparator({
   connectedLeft = false,
   connectedRight = false,
   coverPaddingLeft = false,
@@ -28,7 +28,7 @@ export function HorizontalDelimiter({
   ref = null,
   style,
   ...props
-}: HorizontalDelimiterProps) {
+}: HorizontalSeparatorProps) {
   const { width: contentWidth } = useContext(ContentDimensionsContext);
   const { chWidth, chHeight } = useContext(SizeContext);
   const {
@@ -43,39 +43,62 @@ export function HorizontalDelimiter({
   return (
     <div
       style={{
-        width:
-          (contentWidth +
-            (connectedLeft ? 1 : 0) +
-            (connectedRight ? 1 : 0) +
-            (coverPaddingLeft ? paddingLeft : 0) +
-            (coverPaddingRight ? paddingRight : 0)) *
-          chWidth,
+        width: contentWidth * chWidth,
         height: chHeight,
         backgroundColor: palette[backgroundColor],
         color: palette[delimiterColor ?? defaultColor],
         position: "relative",
-        left:
-          -((connectedLeft ? 1 : 0) + (coverPaddingLeft ? paddingLeft : 0)) *
-          chWidth,
         userSelect: "none",
         ...style,
       }}
       ref={ref}
       {...props}
     >
-      {connectedLeft &&
-        (delimiterStyle === borderStyle
-          ? BORDER[borderStyle].CROSS_LEFT
-          : CONNECTION[borderStyle].CROSS_LEFT)}
-      {BORDER[delimiterStyle].HORIZONTAL.repeat(
-        contentWidth +
-          (coverPaddingLeft ? paddingLeft : 0) +
-          (coverPaddingRight ? paddingRight : 0),
+      {connectedLeft && (
+        <span
+          style={{
+            position: "absolute",
+            left: -(1 + paddingLeft) * chWidth,
+          }}
+        >
+          {delimiterStyle === borderStyle
+            ? BORDER[borderStyle].CROSS_LEFT
+            : CONNECTION[borderStyle].CROSS_LEFT}
+        </span>
       )}
-      {connectedRight &&
-        (delimiterStyle === borderStyle
-          ? BORDER[borderStyle].CROSS_RIGHT
-          : CONNECTION[borderStyle].CROSS_RIGHT)}
+      {coverPaddingLeft && (
+        <span
+          style={{
+            position: "absolute",
+            left: -paddingLeft * chWidth,
+          }}
+        >
+          {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingLeft)}
+        </span>
+      )}
+      {BORDER[delimiterStyle].HORIZONTAL.repeat(contentWidth)}
+      {coverPaddingRight && (
+        <span
+          style={{
+            position: "absolute",
+            right: -paddingRight * chWidth,
+          }}
+        >
+          {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingRight)}
+        </span>
+      )}
+      {connectedRight && (
+        <span
+          style={{
+            position: "absolute",
+            right: -(1 + paddingRight) * chWidth,
+          }}
+        >
+          {delimiterStyle === borderStyle
+            ? BORDER[borderStyle].CROSS_RIGHT
+            : CONNECTION[borderStyle].CROSS_RIGHT}
+        </span>
+      )}
     </div>
   );
 }

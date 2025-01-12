@@ -18,14 +18,16 @@ export const Primary: Story = {
         paddingBottom={0}
         paddingLeft={1}
         paddingRight={1}
-        width={60}
-        height={20}
+        marginTop={0}
+        marginBottom={0}
+        marginLeft={1}
+        marginRight={1}
         top={10}
         left={10}
       >
         <TUIWindow.Content>
           ad minim veniam, nisi ut
-          <TUIWindow.HorizontalDelimiter
+          <TUIWindow.HorizontalSeparator
             coverPaddingLeft={true}
             coverPaddingRight={true}
             connectedLeft={true}
