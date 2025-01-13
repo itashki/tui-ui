@@ -3,8 +3,6 @@ import { SizeContext } from "./SizeContext";
 import { ANSI_COLOR, ANSI_COLORS, ANSI_COLORS_VGA } from "lib/ANSI_COLORS";
 import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
-import { SHADE } from "lib/BOX_DRAWING";
-import { Shade } from "lib/components/Shade";
 import mergeRefs from "merge-refs";
 
 interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -14,7 +12,6 @@ interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   fontSize?: string;
   fontFamily?: string;
   backgroundColor?: ANSI_COLOR;
-  shade?: { shade: SHADE; color: ANSI_COLOR };
   ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
@@ -32,7 +29,6 @@ const rootStyle = {
  * @param fontSize - The font size of the root elementm in any valid CSS unit
  * @param fontFamily - The font family for all elements, non-monospace fonts are not supported
  * @param backgroundColor - The background color of the root element
- * @param shade - Use shade characters to fill the screen
  **/
 export function TUIRoot({
   palette = ANSI_COLORS_VGA,
@@ -41,7 +37,6 @@ export function TUIRoot({
   fontSize = "16px",
   fontFamily = "ModernDOS",
   backgroundColor = ANSI_COLOR.BLACK,
-  shade,
   style = {},
   ref = null,
   children,
@@ -136,7 +131,6 @@ export function TUIRoot({
       ref={mergeRefs(rootRef, ref)}
       {...props}
     >
-      {shade && <Shade height={data.tHeight} width={data.tWidth} {...shade} />}
       <SizeContext.Provider value={data}>
         <RegisterHotKeyContext.Provider value={registerHotkey}>
           <PaletteContext.Provider value={palette}>
