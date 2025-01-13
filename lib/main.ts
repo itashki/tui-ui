@@ -17,3 +17,10 @@ export { usePalette } from "./components/TUIRoot/usePalette";
 
 export { BottomNavigation } from "./components/BottomNavigation";
 export { TUIWindow } from "./components/Window";
+export { Checkbox } from "./components/Checkbox";
+export { Color } from "./components/Color";
+export { DropDown } from "./components/DropDown";
+export { HotKey } from "./components/HotKey";
+export { Modal } from "./components/Modal";
+export { RadioGroup } from "./components/RadioGroup";
+export { Shade } from "./components/Shade";

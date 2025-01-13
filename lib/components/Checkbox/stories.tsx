@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { TUIRoot } from "lib/components/TUIRoot";
 import { TUIWindow } from "../Window";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
-import { Checkbox } from "./Checkbox";
+import { Checkbox } from ".";
 
 const meta: Meta<typeof TUIWindow.Root> = {
   component: TUIWindow.Root,
