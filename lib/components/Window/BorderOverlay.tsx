@@ -6,7 +6,7 @@ import { BackgroundColorContext } from "./BackgroundColorContext";
 import { SizeContext } from "../TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
-interface BorderOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BorderOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
   side: SIDE;
   start: number;
   length: number;

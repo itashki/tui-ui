@@ -5,7 +5,7 @@ import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
 import mergeRefs from "merge-refs";
 
-interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   palette?: ANSI_COLORS;
   height?: string;
   width?: string;

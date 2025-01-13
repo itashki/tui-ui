@@ -7,7 +7,7 @@ import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 
-interface HorizontalSeparatorProps
+export interface HorizontalSeparatorProps
   extends React.HTMLAttributes<HTMLDivElement> {
   connectedRight?: boolean;
   connectedLeft?: boolean;

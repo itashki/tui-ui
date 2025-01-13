@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 
-interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
   ref?: React.RefObject<HTMLDivElement | null> | null;
 }
