@@ -29,6 +29,7 @@ export function Item({
           width: "100%",
           userSelect: "none",
           position: "relative",
+          textWrap: "nowrap",
           ...style,
         }}
         {...props}

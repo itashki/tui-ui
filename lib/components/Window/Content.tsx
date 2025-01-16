@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 
@@ -15,10 +15,6 @@ export function Content({
   ...props
 }: ContentProps) {
   const palette = useContext(PaletteContext);
-  const [, setScroll] = useState(0);
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    setScroll(e.currentTarget.scrollTop);
-  };
 
   //!TODO: Implement scrolling
   return (
@@ -31,7 +27,6 @@ export function Content({
         color: palette[color],
         ...style,
       }}
-      onScroll={handleScroll}
       ref={ref}
       {...props}
     >

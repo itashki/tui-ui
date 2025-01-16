@@ -262,20 +262,20 @@ export function Root({
           value={{
             height: Math.max(
               computedHeight -
-                2 * BORDER_WIDTH -
-                marginTop -
-                marginBottom -
-                paddingLeft -
-                paddingRight,
+              2 * BORDER_WIDTH -
+              marginTop -
+              marginBottom -
+              paddingLeft -
+              paddingRight,
               0,
             ),
             width: Math.max(
               computedWidth -
-                2 * BORDER_WIDTH -
-                marginLeft -
-                marginRight -
-                paddingLeft -
-                paddingRight,
+              2 * BORDER_WIDTH -
+              marginLeft -
+              marginRight -
+              paddingLeft -
+              paddingRight,
               0,
             ),
           }}
