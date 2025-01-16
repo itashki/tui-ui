@@ -6,13 +6,13 @@ import { RegisterHotKeyContext } from "../TUIRoot/RegisterHotKeyContext";
 interface HotKeyProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
   hotKey: string;
-  callback: () => void;
+  callback?: () => void;
   ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
 export function HotKey({
   hotKey,
-  callback,
+  callback = () => { },
   color = ANSI_COLOR.RED,
   style,
   children,
@@ -30,7 +30,7 @@ export function HotKey({
   return (
     <span
       aria-keyshortcuts={hotKey}
-      style={{ color: palette[color], ...style }}
+      style={{ color: palette[color], display: "inline-block", ...style }}
       ref={ref}
       {...props}
     >
