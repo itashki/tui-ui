@@ -119,25 +119,33 @@ export function Root({
     <div
       style={{
         position: "absolute",
-        top: marginTop * chHeight,
-        left: marginLeft * chWidth,
+        top: `calc(${marginTop} * 1em)`,
+        left: `calc(${marginLeft} * 1ch)`,
         width: "100%",
-        height: chHeight,
+        height: `calc(${BORDER_WIDTH} * 1em)`,
         backgroundColor: "transparent",
         color: palette[borderColor],
         userSelect: "none",
+        display: "flex",
+        flexDirection: "row",
       }}
       aria-hidden
       ref={topBorderRef}
       {...topBorderProps}
     >
-      {TOP_LEFT +
-        HORIZONTAL.repeat(
-          computedWidth > 2 * BORDER_WIDTH + marginLeft + marginRight
-            ? computedWidth - 2 * BORDER_WIDTH - marginLeft - marginRight
-            : 0,
-        ) +
-        TOP_RIGHT}
+      <span>{TOP_LEFT}</span>
+      {Array.from(
+        {
+          length: Math.max(
+            computedWidth - 2 * BORDER_WIDTH - marginLeft - marginRight,
+            0,
+          ),
+        },
+        (_, i) => (
+          <span key={i}>{HORIZONTAL}</span>
+        ),
+      )}
+      <span>{TOP_RIGHT}</span>
     </div>
   );
 
@@ -145,25 +153,33 @@ export function Root({
     <div
       style={{
         position: "absolute",
-        bottom: marginBottom * chHeight,
-        left: marginLeft * chWidth,
+        bottom: `calc(${marginBottom} * 1em)`,
+        left: `calc(${marginLeft} * 1ch)`,
         width: "100%",
-        height: chHeight,
+        height: `calc(${BORDER_WIDTH} *1em)`,
         backgroundColor: "transparent",
         color: palette[borderColor],
         userSelect: "none",
+        display: "flex",
+        flexDirection: "row",
       }}
       aria-hidden
       ref={bottomBorderRef}
       {...bottomBorderProps}
     >
-      {BOTTOM_LEFT +
-        HORIZONTAL.repeat(
-          computedWidth > 2 * BORDER_WIDTH + marginLeft + marginRight
-            ? computedWidth - 2 * BORDER_WIDTH - marginLeft - marginRight
-            : 0,
-        ) +
-        BOTTOM_RIGHT}
+      <span>{BOTTOM_LEFT}</span>
+      {Array.from(
+        {
+          length: Math.max(
+            computedWidth - 2 * BORDER_WIDTH - marginLeft - marginRight,
+            0,
+          ),
+        },
+        (_, i) => (
+          <span key={i}>{HORIZONTAL}</span>
+        ),
+      )}
+      <span>{BOTTOM_RIGHT}</span>
     </div>
   );
 
@@ -171,10 +187,10 @@ export function Root({
     <div
       style={{
         position: "absolute",
-        top: chHeight * (marginTop + BORDER_WIDTH),
-        left: chWidth * marginLeft,
-        width: chWidth,
-        height: chHeight * (computedHeight - 2 * BORDER_WIDTH),
+        top: `calc(${marginTop + BORDER_WIDTH} * 1em)`,
+        left: `calc(${marginLeft} * 1ch)`,
+        width: `calc(${BORDER_WIDTH} * 1ch)`,
+        height: `calc(100% - (2em * ${BORDER_WIDTH}))`,
         backgroundColor: "transparent",
         color: palette[borderColor],
         display: "flex",
@@ -187,7 +203,10 @@ export function Root({
     >
       {Array.from(
         {
-          length: computedHeight - 2 * BORDER_WIDTH - marginTop - marginBottom,
+          length: Math.max(
+            computedHeight - 2 * BORDER_WIDTH - marginTop - marginBottom,
+            0,
+          ),
         },
         (_, i) => (
           <span key={i}>{VERTICAL}</span>
@@ -200,10 +219,10 @@ export function Root({
     <div
       style={{
         position: "absolute",
-        top: chHeight * (marginTop + BORDER_WIDTH),
-        right: chWidth * marginRight,
-        width: chWidth,
-        height: chHeight * (computedHeight - 2 * BORDER_WIDTH),
+        top: `calc(${marginTop + BORDER_WIDTH} * 1em)`,
+        right: `calc(${marginRight} * 1ch)`,
+        width: `calc(${BORDER_WIDTH} * 1ch)`,
+        height: `calc(${computedHeight - 2 * BORDER_WIDTH} * 1em)`,
         backgroundColor: "transparent",
         color: palette[borderColor],
         display: "flex",
@@ -216,7 +235,10 @@ export function Root({
     >
       {Array.from(
         {
-          length: computedHeight - 2 * BORDER_WIDTH - marginTop - marginBottom,
+          length: Math.max(
+            computedHeight - 2 * BORDER_WIDTH - marginTop - marginBottom,
+            0,
+          ),
         },
         (_, i) => (
           <span key={i}>{VERTICAL}</span>
@@ -230,21 +252,15 @@ export function Root({
       style={{
         backgroundColor: palette[backgroundColor],
         position: "absolute",
-        top: `${top * chHeight}px`,
-        left: `${left * chWidth}px`,
-        boxShadow: shadow
-          ? `${chWidth * 2}px ${chHeight}px ${palette[ANSI_COLOR.BLACK]}`
-          : "none",
-        height: height
-          ? chHeight * height
-          : `calc(fit-content + ${marginTop * chHeight}px + ${marginBottom * chHeight}px + ${paddingTop * chHeight}px + ${paddingBottom * chHeight}px + ${BORDER_WIDTH * chHeight}px)`,
-        width: width
-          ? chWidth * width
-          : `calc(fit-content + ${marginLeft * chWidth}px + ${marginRight * chWidth}px + ${paddingLeft * chWidth}px + ${paddingRight * chWidth}px + ${BORDER_WIDTH * chWidth}px)`,
-        paddingRight: (marginRight + BORDER_WIDTH + paddingRight) * chWidth,
-        paddingLeft: (marginLeft + BORDER_WIDTH + paddingLeft) * chWidth,
-        paddingTop: (marginTop + BORDER_WIDTH + paddingTop) * chHeight,
-        paddingBottom: (marginBottom + BORDER_WIDTH + paddingBottom) * chHeight,
+        top: `calc(${top} * 1em)`,
+        left: `calc(${left} * 1ch)`,
+        boxShadow: shadow ? `2ch 1em ${palette[ANSI_COLOR.BLACK]}` : "none",
+        height: height ? `calc(${height} * 1em)` : `auto`,
+        width: width ? `calc(${width} * 1ch)` : `auto`,
+        paddingRight: `calc(${marginRight + BORDER_WIDTH + paddingRight} * 1ch)`,
+        paddingLeft: `calc(${marginLeft + BORDER_WIDTH + paddingLeft} * 1ch)`,
+        paddingTop: `calc(${marginTop + BORDER_WIDTH + paddingTop} * 1em)`,
+        paddingBottom: `calc(${marginBottom + BORDER_WIDTH + paddingBottom} * 1em)`,
         boxSizing: "border-box",
         overflowX: "visible",
         overflowY: "clip",

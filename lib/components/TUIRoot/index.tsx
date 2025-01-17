@@ -48,32 +48,53 @@ export function TUIRoot({
     tHeight: number;
     tWidth: number;
   } | null>(null);
-  const [registeredHotkeys, setRegisteredHotkeys] = useState<
-    Record<string, () => void>
+  const registeredHotkeys = useRef<
+    Record<string, { callback: () => void; global: boolean }>
   >({});
 
-  const registerHotkey = (key: string, callback: () => void) => {
-    setRegisteredHotkeys((prev) => ({ ...prev, [key]: callback }));
+  const registerHotkey = (
+    key: string,
+    callback: () => void,
+    global: boolean = true,
+  ) => {
+    registeredHotkeys.current[key] = { callback, global };
     return () => {
-      setRegisteredHotkeys((prev) => {
-        delete prev[key];
-        return prev;
-      });
+      delete registeredHotkeys.current[key];
     };
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (registeredHotkeys[e.key]) {
+      if (
+        registeredHotkeys.current[e.key] &&
+        !registeredHotkeys.current[e.key].global
+      ) {
         e.preventDefault();
-        registeredHotkeys[e.key]();
+        registeredHotkeys.current[e.key].callback();
+      }
+    };
+    const currentRoot = rootRef.current;
+    if (!currentRoot) return;
+    currentRoot.addEventListener("keydown", handleKeyDown);
+    return () => {
+      currentRoot.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        registeredHotkeys.current[e.key] &&
+        registeredHotkeys.current[e.key].global
+      ) {
+        e.preventDefault();
+        registeredHotkeys.current[e.key].callback();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [registeredHotkeys]);
+  }, []);
 
   const rootRef = useRef<HTMLDivElement>(null);
 

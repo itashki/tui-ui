@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { BorderContext } from "./BorderContext";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { BackgroundColorContext } from "./BackgroundColorContext";
-import { SizeContext } from "../TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
-export interface BorderOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BorderOverlayProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   side: SIDE;
   start: number;
   length: number;
@@ -30,7 +30,6 @@ export function BorderOverlay({
     useContext(BorderContext);
   const palette = useContext(PaletteContext);
   const backgroundColor = useContext(BackgroundColorContext);
-  const { chHeight, chWidth } = useContext(SizeContext);
 
   switch (side) {
     case SIDE.TOP:
@@ -38,10 +37,10 @@ export function BorderOverlay({
         <div
           style={{
             position: "absolute",
-            top: (marginTop - coverOffset) * chHeight,
-            left: (marginLeft + start) * chWidth,
-            width: length * chWidth,
-            height: chHeight,
+            top: `calc(${marginTop - coverOffset} * 1em)`,
+            left: `calc(${marginLeft + start} * 1ch)`,
+            width: `calc(${length} * 1ch)`,
+            height: `1em`,
             backgroundColor: palette[backgroundColor],
             color: palette[color ?? borderColor],
             display: "flex",
@@ -60,10 +59,10 @@ export function BorderOverlay({
         <div
           style={{
             position: "absolute",
-            bottom: (marginBottom - coverOffset) * chHeight,
-            left: (marginLeft + start) * chWidth,
-            width: length * chWidth,
-            height: chHeight,
+            bottom: `calc(${marginBottom - coverOffset} * 1em)`,
+            left: `calc(${marginLeft + start} * 1ch)`,
+            width: `calc(${length} * 1ch)`,
+            height: `1em`,
             backgroundColor: palette[backgroundColor],
             color: palette[color ?? borderColor],
             display: "flex",
@@ -82,10 +81,10 @@ export function BorderOverlay({
         <div
           style={{
             position: "absolute",
-            top: (marginTop + start) * chHeight,
-            left: (marginLeft - coverOffset) * chWidth,
-            width: chWidth,
-            height: length * chHeight,
+            top: `calc(${marginTop + start} * 1em)`,
+            left: `calc(${marginLeft - coverOffset} * 1ch)`,
+            width: `1ch`,
+            height: `calc(${length} * 1em)`,
             backgroundColor: palette[backgroundColor],
             color: palette[color ?? borderColor],
             display: "flex",
@@ -104,10 +103,10 @@ export function BorderOverlay({
         <div
           style={{
             position: "absolute",
-            top: (marginTop + start) * chHeight,
-            right: (marginRight - coverOffset) * chWidth,
-            width: chWidth,
-            height: length * chHeight,
+            top: `calc(${marginTop + start} * 1em)`,
+            right: `calc(${marginRight - coverOffset} * 1ch)`,
+            width: `1ch`,
+            height: `calc(${length} * 1em)`,
             backgroundColor: palette[backgroundColor],
             color: palette[color ?? borderColor],
             display: "flex",

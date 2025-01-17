@@ -24,15 +24,14 @@ export function Entrie({
 
   useEffect(() => {
     const unregister = registerHotKey(hotKey, callback);
-    const handleClick = () => callback();
     const element = ref.current;
-    element?.addEventListener("click", handleClick);
+    element?.addEventListener("click", callback);
 
     return () => {
       unregister();
-      element?.removeEventListener("click", handleClick);
+      element?.removeEventListener("click", callback);
     };
-  }, [ref, callback, hotKey, registerHotKey]);
+  }, [callback, hotKey, registerHotKey]);
 
   return (
     <button

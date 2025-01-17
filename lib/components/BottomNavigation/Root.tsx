@@ -8,6 +8,7 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   hotKeyBackgroundColor?: ANSI_COLOR;
   labelColor?: ANSI_COLOR;
   backgroundColor?: ANSI_COLOR;
+  globalHotKeys?: boolean;
   ref?: React.Ref<HTMLDivElement | null> | null;
 }
 
@@ -27,16 +28,16 @@ export function Root({
   children,
   ...props
 }: RootProps) {
-  const { chHeight, chWidth, tWidth, tHeight } = useContext(SizeContext);
+  const {tWidth, tHeight } = useContext(SizeContext);
 
   return (
     <div
       style={{
         position: "absolute",
-        top: chHeight * (tHeight - 1),
+        top: `calc(${tHeight - 1} * 1em)`,
         left: 0,
-        height: chHeight,
-        width: chWidth * tWidth,
+        height: `1em`,
+        width: `calc(${tWidth} * 1ch)`,
         display: "flex",
         flexWrap: "nowrap",
         overflow: "hidden",

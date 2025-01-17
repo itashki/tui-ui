@@ -1,5 +1,5 @@
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
-import { useRegisterHotKey, useSize } from "lib/main";
+import { useRegisterHotKey } from "lib/main";
 
 interface DropdownMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   onSelect?: () => void;
@@ -19,13 +19,11 @@ export function Item({
     registerHotKey(hotKey, onSelect);
   }
 
-  const { chHeight } = useSize();
-
   return (
     <DropdownMenuItem asChild onSelect={onSelect}>
       <div
         style={{
-          height: chHeight,
+          height: `1em`,
           width: "100%",
           userSelect: "none",
           position: "relative",
@@ -38,7 +36,7 @@ export function Item({
           <div
             style={{
               width: "fit-content",
-              height: chHeight,
+              height: `1em`,
               position: "absolute",
               right: 0,
             }}

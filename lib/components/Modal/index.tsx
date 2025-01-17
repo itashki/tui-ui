@@ -13,7 +13,7 @@ export function Modal({
   ref = null,
   ...props
 }: ModalProps) {
-  const { chWidth, chHeight, tHeight, tWidth } = useContext(SizeContext);
+  const { tHeight, tWidth } = useContext(SizeContext);
 
   return (
     <>
@@ -22,8 +22,8 @@ export function Modal({
           position: "absolute",
           top: 0,
           left: 0,
-          width: tWidth * chWidth,
-          height: tHeight * chHeight,
+          width: `calc(${tWidth}) * 1ch`,
+          height: `calc(${tHeight}) * 1em`,
           ...style,
         }}
         onClick={() => close()}

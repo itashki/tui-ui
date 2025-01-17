@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { SizeContext } from "lib/components/TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { BORDER, BORDER_TYPE, CONNECTION } from "lib/BOX_DRAWING";
@@ -30,7 +29,6 @@ export function HorizontalSeparator({
   ...props
 }: HorizontalSeparatorProps) {
   const { width: contentWidth } = useContext(ContentDimensionsContext);
-  const { chWidth, chHeight } = useContext(SizeContext);
   const {
     borderStyle,
     borderColor: defaultColor,
@@ -43,8 +41,8 @@ export function HorizontalSeparator({
   return (
     <div
       style={{
-        width: contentWidth * chWidth,
-        height: chHeight,
+        width: `calc(${contentWidth} * 1ch)`,
+        height: `1em`,
         backgroundColor: palette[backgroundColor],
         color: palette[delimiterColor ?? defaultColor],
         position: "relative",
@@ -58,7 +56,7 @@ export function HorizontalSeparator({
         <span
           style={{
             position: "absolute",
-            left: -(1 + paddingLeft) * chWidth,
+            left: `calc(${1 + paddingLeft} * -1ch)`,
           }}
         >
           {delimiterStyle === borderStyle
@@ -70,7 +68,7 @@ export function HorizontalSeparator({
         <span
           style={{
             position: "absolute",
-            left: -paddingLeft * chWidth,
+            left: `calc(${paddingLeft} * -1ch)`,
           }}
         >
           {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingLeft)}
@@ -81,7 +79,7 @@ export function HorizontalSeparator({
         <span
           style={{
             position: "absolute",
-            right: -paddingRight * chWidth,
+            right: `calc(${paddingRight} * -1ch)`,
           }}
         >
           {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingRight)}
@@ -91,7 +89,7 @@ export function HorizontalSeparator({
         <span
           style={{
             position: "absolute",
-            right: -(1 + paddingRight) * chWidth,
+            right: `calc(${1 + paddingRight} * -1ch)`,
           }}
         >
           {delimiterStyle === borderStyle
