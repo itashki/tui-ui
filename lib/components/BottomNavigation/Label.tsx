@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ColorsContext } from "./ColorsContext";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { colorNameToCss } from "lib/UTILS";
 
 interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   labelColor?: ANSI_COLOR;
@@ -25,13 +25,14 @@ export function Label({
     labelColor: labelColorInherit,
     backgroundColor: backgroundColorInherit,
   } = useContext(ColorsContext);
-  const palette = useContext(PaletteContext);
 
   return (
     <span
       style={{
-        color: palette[labelColor || labelColorInherit],
-        backgroundColor: palette[backgroundColor || backgroundColorInherit],
+        color: colorNameToCss(labelColor || labelColorInherit),
+        backgroundColor: colorNameToCss(
+          backgroundColor || backgroundColorInherit,
+        ),
         ...style,
       }}
       ref={ref}

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { SizeContext } from "./SizeContext";
 import { ANSI_COLOR, ANSI_COLORS, ANSI_COLORS_VGA } from "lib/ANSI_COLORS";
-import { PaletteContext } from "./PaletteContext";
 import { RegisterHotKeyContext } from "./RegisterHotKeyContext";
 import mergeRefs from "merge-refs";
+import { colorNameToCss } from "lib/UTILS";
 
 export interface TUIRootProps extends React.HTMLAttributes<HTMLDivElement> {
   palette?: ANSI_COLORS;
@@ -138,6 +138,12 @@ export function TUIRoot({
     );
   }
 
+  const cssPalette = {} as Record<string, string>;
+  for (const key in palette) {
+    cssPalette[`--ansi-color-${key.toLowerCase()}`] =
+      palette[key as keyof typeof palette];
+  }
+
   return (
     <div
       style={{
@@ -145,7 +151,8 @@ export function TUIRoot({
         width,
         fontSize,
         fontFamily,
-        backgroundColor: palette[backgroundColor],
+        ...cssPalette,
+        backgroundColor: colorNameToCss(backgroundColor),
         ...rootStyle,
         ...style,
       }}
@@ -154,9 +161,7 @@ export function TUIRoot({
     >
       <SizeContext.Provider value={data}>
         <RegisterHotKeyContext.Provider value={registerHotkey}>
-          <PaletteContext.Provider value={palette}>
-            {children}
-          </PaletteContext.Provider>
+          {children}
         </RegisterHotKeyContext.Provider>
       </SizeContext.Provider>
     </div>

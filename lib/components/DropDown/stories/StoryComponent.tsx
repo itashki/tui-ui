@@ -1,8 +1,7 @@
-import { ANSI_COLOR, DropDown, usePalette, useSize } from "lib/main";
+import { ANSI_COLOR, colorNameToCss, DropDown, useSize } from "lib/main";
 
 export function StoryComponent() {
   const { chHeight } = useSize();
-  const palette = usePalette();
 
   return (
     <div
@@ -12,7 +11,7 @@ export function StoryComponent() {
         left: 0,
         width: "100%",
         height: `${chHeight}px`,
-        backgroundColor: palette[ANSI_COLOR.CYAN],
+        backgroundColor: colorNameToCss(ANSI_COLOR.CYAN),
         display: "flex",
         flexDirection: "row",
       }}

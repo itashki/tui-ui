@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { BORDER, BORDER_TYPE, CONNECTION } from "lib/BOX_DRAWING";
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
+import { colorNameToCss } from "lib/UTILS";
 
 export interface HorizontalSeparatorProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -36,15 +36,14 @@ export function HorizontalSeparator({
     paddingRight,
   } = useContext(BorderContext);
   const backgroundColor = useContext(BackgroundColorContext);
-  const palette = useContext(PaletteContext);
 
   return (
     <div
       style={{
         width: `calc(${contentWidth} * 1ch)`,
         height: `1em`,
-        backgroundColor: palette[backgroundColor],
-        color: palette[delimiterColor ?? defaultColor],
+        backgroundColor: colorNameToCss(backgroundColor),
+        color: colorNameToCss(delimiterColor ?? defaultColor),
         position: "relative",
         userSelect: "none",
         ...style,

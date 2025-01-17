@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ColorsContext } from "./ColorsContext";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import { colorNameToCss } from "lib/UTILS";
 
 interface HotKeyProps extends React.HTMLAttributes<HTMLSpanElement> {
   hotKeyColor?: ANSI_COLOR;
@@ -25,14 +25,14 @@ export function HotKey({
     hotKeyColor: hotKeyColorInherit,
     hotKeyBackgroundColor: hotKeyBackgroundColorInherit,
   } = useContext(ColorsContext);
-  const palette = useContext(PaletteContext);
 
   return (
     <span
       style={{
-        color: palette[hotKeyColor || hotKeyColorInherit],
-        backgroundColor:
-          palette[hotKeyBackgroundColor || hotKeyBackgroundColorInherit],
+        color: colorNameToCss(hotKeyColor || hotKeyColorInherit),
+        backgroundColor: colorNameToCss(
+          hotKeyBackgroundColor || hotKeyBackgroundColorInherit,
+        ),
         ...style,
       }}
       ref={ref}

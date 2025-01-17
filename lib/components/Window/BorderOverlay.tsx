@@ -1,7 +1,6 @@
-import { SIDE } from "lib/UTILS";
+import { colorNameToCss, SIDE } from "lib/UTILS";
 import { useContext } from "react";
 import { BorderContext } from "./BorderContext";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 
@@ -28,7 +27,6 @@ export function BorderOverlay({
 }: BorderOverlayProps) {
   const { marginTop, marginBottom, marginLeft, marginRight, borderColor } =
     useContext(BorderContext);
-  const palette = useContext(PaletteContext);
   const backgroundColor = useContext(BackgroundColorContext);
 
   switch (side) {
@@ -41,8 +39,8 @@ export function BorderOverlay({
             left: `calc(${marginLeft + start} * 1ch)`,
             width: `calc(${length} * 1ch)`,
             height: `1em`,
-            backgroundColor: palette[backgroundColor],
-            color: palette[color ?? borderColor],
+            backgroundColor: colorNameToCss(backgroundColor),
+            color: colorNameToCss(color ?? borderColor),
             display: "flex",
             flexDirection: "row",
             userSelect: "none",
@@ -63,8 +61,8 @@ export function BorderOverlay({
             left: `calc(${marginLeft + start} * 1ch)`,
             width: `calc(${length} * 1ch)`,
             height: `1em`,
-            backgroundColor: palette[backgroundColor],
-            color: palette[color ?? borderColor],
+            backgroundColor: colorNameToCss(backgroundColor),
+            color: colorNameToCss(color ?? borderColor),
             display: "flex",
             flexDirection: "row",
             userSelect: "none",
@@ -85,8 +83,8 @@ export function BorderOverlay({
             left: `calc(${marginLeft - coverOffset} * 1ch)`,
             width: `1ch`,
             height: `calc(${length} * 1em)`,
-            backgroundColor: palette[backgroundColor],
-            color: palette[color ?? borderColor],
+            backgroundColor: colorNameToCss(backgroundColor),
+            color: colorNameToCss(color ?? borderColor),
             display: "flex",
             flexDirection: "column",
             userSelect: "none",
@@ -107,8 +105,8 @@ export function BorderOverlay({
             right: `calc(${marginRight - coverOffset} * 1ch)`,
             width: `1ch`,
             height: `calc(${length} * 1em)`,
-            backgroundColor: palette[backgroundColor],
-            color: palette[color ?? borderColor],
+            backgroundColor: colorNameToCss(backgroundColor),
+            color: colorNameToCss(color ?? borderColor),
             display: "flex",
             flexDirection: "column",
             userSelect: "none",

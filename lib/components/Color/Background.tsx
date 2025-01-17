@@ -1,6 +1,5 @@
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
-import { useContext } from "react";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
+import { colorNameToCss } from "lib/UTILS";
 
 interface BackgroundProps extends React.HTMLAttributes<HTMLSpanElement> {
   color: ANSI_COLOR;
@@ -14,10 +13,12 @@ export function Background({
   ref = null,
   ...props
 }: BackgroundProps) {
-  const palette = useContext(PaletteContext);
   return (
     <span
-      style={{ backgroundColor: palette[color], ...style }}
+      style={{
+        backgroundColor: colorNameToCss(color),
+        ...style,
+      }}
       ref={ref}
       {...props}
     >

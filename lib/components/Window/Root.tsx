@@ -2,11 +2,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { SizeContext } from "lib/components/TUIRoot/SizeContext";
 import { BORDER, BORDER_TYPE, SHADE } from "lib/BOX_DRAWING";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import mergeRefs from "merge-refs";
+import { colorNameToCss } from "lib/UTILS";
 
 export interface WindowRootProps extends React.HTMLAttributes<HTMLDivElement> {
   borderStyle?: BORDER_TYPE;
@@ -76,7 +76,6 @@ export function Root({
   ...props
 }: WindowRootProps) {
   const { chHeight, chWidth, tWidth, tHeight } = useContext(SizeContext);
-  const palette = useContext(PaletteContext);
 
   const innerRef = useRef<HTMLDivElement | null>(null);
   const [{ computedHeight, computedWidth }, setComputedDimensions] = useState({
@@ -124,7 +123,7 @@ export function Root({
         width: "100%",
         height: `calc(${BORDER_WIDTH} * 1em)`,
         backgroundColor: "transparent",
-        color: palette[borderColor],
+        color: colorNameToCss(borderColor),
         userSelect: "none",
         display: "flex",
         flexDirection: "row",
@@ -158,7 +157,7 @@ export function Root({
         width: "100%",
         height: `calc(${BORDER_WIDTH} *1em)`,
         backgroundColor: "transparent",
-        color: palette[borderColor],
+        color: colorNameToCss(borderColor),
         userSelect: "none",
         display: "flex",
         flexDirection: "row",
@@ -192,7 +191,7 @@ export function Root({
         width: `calc(${BORDER_WIDTH} * 1ch)`,
         height: `calc(100% - (2em * ${BORDER_WIDTH}))`,
         backgroundColor: "transparent",
-        color: palette[borderColor],
+        color: colorNameToCss(borderColor),
         display: "flex",
         flexDirection: "column",
         userSelect: "none",
@@ -224,7 +223,7 @@ export function Root({
         width: `calc(${BORDER_WIDTH} * 1ch)`,
         height: `calc(${computedHeight - 2 * BORDER_WIDTH} * 1em)`,
         backgroundColor: "transparent",
-        color: palette[borderColor],
+        color: colorNameToCss(borderColor),
         display: "flex",
         flexDirection: "column",
         userSelect: "none",
@@ -250,11 +249,11 @@ export function Root({
   return (
     <div
       style={{
-        backgroundColor: palette[backgroundColor],
+        backgroundColor: colorNameToCss(backgroundColor),
         position: "absolute",
         top: `calc(${top} * 1em)`,
         left: `calc(${left} * 1ch)`,
-        boxShadow: shadow ? `2ch 1em ${palette[ANSI_COLOR.BLACK]}` : "none",
+        boxShadow: shadow ? `2ch 1em var(--ansi-color-black)` : "none",
         height: height ? `calc(${height} * 1em)` : `auto`,
         width: width ? `calc(${width} * 1ch)` : `auto`,
         paddingRight: `calc(${marginRight + BORDER_WIDTH + paddingRight} * 1ch)`,

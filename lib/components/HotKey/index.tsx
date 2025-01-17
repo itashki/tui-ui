@@ -1,7 +1,7 @@
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { useContext, useEffect } from "react";
-import { PaletteContext } from "../TUIRoot/PaletteContext";
 import { RegisterHotKeyContext } from "../TUIRoot/RegisterHotKeyContext";
+import { colorNameToCss } from "lib/UTILS";
 
 interface HotKeyProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
@@ -19,7 +19,6 @@ export function HotKey({
   ref,
   ...props
 }: HotKeyProps) {
-  const palette = useContext(PaletteContext);
   const registerHotKey = useContext(RegisterHotKeyContext);
 
   useEffect(
@@ -30,7 +29,11 @@ export function HotKey({
   return (
     <span
       aria-keyshortcuts={hotKey}
-      style={{ color: palette[color], display: "inline-block", ...style }}
+      style={{
+        color: colorNameToCss(color),
+        display: "inline-block",
+        ...style,
+      }}
       ref={ref}
       {...props}
     >

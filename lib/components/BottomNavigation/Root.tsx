@@ -28,7 +28,7 @@ export function Root({
   children,
   ...props
 }: RootProps) {
-  const {tWidth, tHeight } = useContext(SizeContext);
+  const { tWidth, tHeight } = useContext(SizeContext);
 
   return (
     <div

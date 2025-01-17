@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
+import { colorNameToCss } from "lib/UTILS";
 
 export interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
@@ -14,7 +13,6 @@ export function Content({
   ref = null,
   ...props
 }: ContentProps) {
-  const palette = useContext(PaletteContext);
 
   //!TODO: Implement scrolling
   return (
@@ -24,7 +22,7 @@ export function Content({
         height: "100%",
         backgroundColor: "transparent",
         overflow: "visible",
-        color: palette[color],
+        color: colorNameToCss(color),
         ...style,
       }}
       ref={ref}

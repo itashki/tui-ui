@@ -1,7 +1,6 @@
-import { useContext } from "react";
-import { PaletteContext } from "lib/components/TUIRoot/PaletteContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { SHADE } from "lib/BOX_DRAWING";
+import { colorNameToCss } from "lib/UTILS";
 
 interface ShadeProps extends React.HTMLAttributes<HTMLDivElement> {
   color: ANSI_COLOR;
@@ -20,12 +19,10 @@ export function Shade({
   ref = null,
   ...props
 }: ShadeProps) {
-  const palette = useContext(PaletteContext);
-
   return (
     <div
       style={{
-        color: palette[color],
+        color: colorNameToCss(color),
         position: "absolute",
         top: 0,
         left: 0,

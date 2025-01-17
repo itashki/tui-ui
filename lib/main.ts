@@ -9,11 +9,11 @@ export { BORDER } from "./BOX_DRAWING";
 export { CONNECTION } from "./BOX_DRAWING";
 export { SHADE } from "./BOX_DRAWING";
 export { SIDE } from "./UTILS";
+export { colorNameToCss } from "./UTILS";
 
 export { TUIRoot } from "./components/TUIRoot";
 export { useSize } from "./components/TUIRoot/useSize";
 export { useRegisterHotKey } from "./components/TUIRoot/useRegisterHotKey";
-export { usePalette } from "./components/TUIRoot/usePalette";
 
 export { BottomNavigation } from "./components/BottomNavigation";
 export { TUIWindow } from "./components/Window";
