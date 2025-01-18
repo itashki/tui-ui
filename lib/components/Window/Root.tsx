@@ -7,6 +7,7 @@ import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import mergeRefs from "merge-refs";
 import { colorNameToCss } from "lib/UTILS";
+import classNames from "./Root.module.css";
 
 export interface WindowRootProps extends React.HTMLAttributes<HTMLDivElement> {
   borderStyle?: BORDER_TYPE;
@@ -73,6 +74,7 @@ export function Root({
   leftBorderProps = {},
   rightBorderRef = null,
   rightBorderProps = {},
+  className,
   ...props
 }: WindowRootProps) {
   const { chHeight, chWidth, tWidth, tHeight } = useContext(SizeContext);
@@ -116,17 +118,11 @@ export function Root({
 
   const topBorder = (
     <div
+      className={classNames.horizontalBorder}
       style={{
-        position: "absolute",
         top: `calc(${marginTop} * 1em)`,
         left: `calc(${marginLeft} * 1ch)`,
-        width: "100%",
-        height: `calc(${BORDER_WIDTH} * 1em)`,
-        backgroundColor: "transparent",
         color: colorNameToCss(borderColor),
-        userSelect: "none",
-        display: "flex",
-        flexDirection: "row",
       }}
       aria-hidden
       ref={topBorderRef}
@@ -150,17 +146,11 @@ export function Root({
 
   const bottomBorder = (
     <div
+      className={classNames.horizontalBorder}
       style={{
-        position: "absolute",
         bottom: `calc(${marginBottom} * 1em)`,
         left: `calc(${marginLeft} * 1ch)`,
-        width: "100%",
-        height: `calc(${BORDER_WIDTH} *1em)`,
-        backgroundColor: "transparent",
         color: colorNameToCss(borderColor),
-        userSelect: "none",
-        display: "flex",
-        flexDirection: "row",
       }}
       aria-hidden
       ref={bottomBorderRef}
@@ -184,17 +174,11 @@ export function Root({
 
   const leftBorder = (
     <div
+      className={classNames.verticalBorder}
       style={{
-        position: "absolute",
         top: `calc(${marginTop + BORDER_WIDTH} * 1em)`,
         left: `calc(${marginLeft} * 1ch)`,
-        width: `calc(${BORDER_WIDTH} * 1ch)`,
-        height: `calc(100% - (2em * ${BORDER_WIDTH}))`,
-        backgroundColor: "transparent",
         color: colorNameToCss(borderColor),
-        display: "flex",
-        flexDirection: "column",
-        userSelect: "none",
       }}
       aria-hidden
       ref={leftBorderRef}
@@ -216,17 +200,11 @@ export function Root({
 
   const rightBorder = (
     <div
+      className={classNames.verticalBorder}
       style={{
-        position: "absolute",
         top: `calc(${marginTop + BORDER_WIDTH} * 1em)`,
         right: `calc(${marginRight} * 1ch)`,
-        width: `calc(${BORDER_WIDTH} * 1ch)`,
-        height: `calc(${computedHeight - 2 * BORDER_WIDTH} * 1em)`,
-        backgroundColor: "transparent",
         color: colorNameToCss(borderColor),
-        display: "flex",
-        flexDirection: "column",
-        userSelect: "none",
       }}
       aria-hidden
       ref={rightBorderRef}
@@ -248,9 +226,9 @@ export function Root({
 
   return (
     <div
+      className={classNames.windowRoot + (className ? ` ${className}` : "")}
       style={{
         backgroundColor: colorNameToCss(backgroundColor),
-        position: "absolute",
         top: `calc(${top} * 1em)`,
         left: `calc(${left} * 1ch)`,
         boxShadow: shadow ? `2ch 1em var(--ansi-color-black)` : "none",
@@ -260,9 +238,6 @@ export function Root({
         paddingLeft: `calc(${marginLeft + BORDER_WIDTH + paddingLeft} * 1ch)`,
         paddingTop: `calc(${marginTop + BORDER_WIDTH + paddingTop} * 1em)`,
         paddingBottom: `calc(${marginBottom + BORDER_WIDTH + paddingBottom} * 1em)`,
-        boxSizing: "border-box",
-        overflowX: "visible",
-        overflowY: "clip",
         ...style,
       }}
       ref={mergeRefs(innerRef, ref)}

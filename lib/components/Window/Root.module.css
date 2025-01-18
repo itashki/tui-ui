@@ -1,0 +1,22 @@
+.border {
+  position: absolute;
+  background-color: transparent;
+  user-select: none;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+}
+.horizontalBorder {
+  composes: border;
+  flex-direction: row;
+}
+.verticalBorder {
+  composes: border;
+  flex-direction: column;
+}
+.windowRoot {
+  position: absolute;
+  box-sizing: border-box;
+  overflow-x: visible;
+  overflow-y: clip;
+}

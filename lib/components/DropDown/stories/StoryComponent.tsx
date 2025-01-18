@@ -49,8 +49,8 @@ export function StoryComponent() {
           Trigger 2
         </DropDown.Trigger>
         <DropDown.Content
-          padding={0}
-          margin={0}
+          padding={1}
+          margin={2}
           backgroundColor={ANSI_COLOR.CYAN}
         >
           <DropDown.Item>Item 1</DropDown.Item>

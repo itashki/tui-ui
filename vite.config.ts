@@ -16,7 +16,7 @@ export default defineConfig({
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
       include: ["lib"],
-      exclude: ["lib/**/stories.tsx"],
+      exclude: ["lib/**/stories.tsx", "lib/**/stories/**"],
     }),
     tsconfigPaths(),
   ],
@@ -32,12 +32,17 @@ export default defineConfig({
         "react-dom",
         "@radix-ui/react-radio-group",
         "@radix-ui/react-checkbox",
+        "@radix-ui/react-dropdown-menu",
         "merge-refs",
       ],
       input: Object.fromEntries(
         glob
           .sync("lib/**/*.{ts,tsx}", {
-            ignore: ["lib/**/*.d.ts", "lib/**/stories.tsx"],
+            ignore: [
+              "lib/**/*.d.ts",
+              "lib/**/stories.tsx",
+              "lib/**/stories/**",
+            ],
           })
           .map((file) => [
             // The name of the entry point

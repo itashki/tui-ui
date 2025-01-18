@@ -5,6 +5,7 @@ import { BackgroundColorContext } from "./BackgroundColorContext";
 import { BorderContext } from "./BorderContext";
 import { ContentDimensionsContext } from "./ContentDimensionsContext";
 import { colorNameToCss } from "lib/UTILS";
+import classNames from "./HorizontalSeparator.module.css";
 
 export interface HorizontalSeparatorProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,6 +26,7 @@ export function HorizontalSeparator({
   delimiterColor,
   delimiterStyle = BORDER_TYPE.SINGLE,
   ref = null,
+  className,
   style,
   ...props
 }: HorizontalSeparatorProps) {
@@ -39,13 +41,12 @@ export function HorizontalSeparator({
 
   return (
     <div
+      className={classNames.horizontalSeparator + (className ? ` ${className}` : "")}
       style={{
         width: `calc(${contentWidth} * 1ch)`,
-        height: `1em`,
+        height: `calc(${BORDER[borderStyle].BORDER_WIDTH} * 1em)`,
         backgroundColor: colorNameToCss(backgroundColor),
         color: colorNameToCss(delimiterColor ?? defaultColor),
-        position: "relative",
-        userSelect: "none",
         ...style,
       }}
       ref={ref}
@@ -54,7 +55,6 @@ export function HorizontalSeparator({
       {connectedLeft && (
         <span
           style={{
-            position: "absolute",
             left: `calc(${1 + paddingLeft} * -1ch)`,
           }}
         >
@@ -63,31 +63,41 @@ export function HorizontalSeparator({
             : CONNECTION[borderStyle].CROSS_LEFT}
         </span>
       )}
-      {coverPaddingLeft && (
+      {coverPaddingLeft &&
+        Array.from({ length: paddingLeft }).map((_, i) => (
+          <span
+            key={i}
+            style={{
+              left: `calc(${i + 1} * -1ch)`,
+            }}
+          >
+            {BORDER[delimiterStyle].HORIZONTAL}
+          </span>
+        ))}
+      {Array.from({ length: contentWidth }).map((_, i) => (
         <span
+          key={i}
           style={{
-            position: "absolute",
-            left: `calc(${paddingLeft} * -1ch)`,
+            left: `${i}ch`,
           }}
         >
-          {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingLeft)}
+          {BORDER[delimiterStyle].HORIZONTAL}
         </span>
-      )}
-      {BORDER[delimiterStyle].HORIZONTAL.repeat(contentWidth)}
-      {coverPaddingRight && (
-        <span
-          style={{
-            position: "absolute",
-            right: `calc(${paddingRight} * -1ch)`,
-          }}
-        >
-          {BORDER[delimiterStyle].HORIZONTAL.repeat(paddingRight)}
-        </span>
-      )}
+      ))}
+      {coverPaddingRight &&
+        Array.from({ length: paddingRight }).map((_, i) => (
+          <span
+            key={i}
+            style={{
+              right: `calc(${i + 1} * -1ch)`,
+            }}
+          >
+            {BORDER[delimiterStyle].HORIZONTAL}
+          </span>
+        ))}
       {connectedRight && (
         <span
           style={{
-            position: "absolute",
             right: `calc(${1 + paddingRight} * -1ch)`,
           }}
         >

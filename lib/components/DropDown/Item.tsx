@@ -1,5 +1,6 @@
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { useRegisterHotKey } from "lib/main";
+import classNames from "./DropDown.module.css";
 
 interface DropdownMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   onSelect?: () => void;
@@ -10,7 +11,7 @@ export function Item({
   onSelect,
   hotKey,
   children,
-  style,
+  className,
   ...props
 }: DropdownMenuItemProps) {
   const registerHotKey = useRegisterHotKey();
@@ -22,28 +23,10 @@ export function Item({
   return (
     <DropdownMenuItem asChild onSelect={onSelect}>
       <div
-        style={{
-          height: `1em`,
-          width: "100%",
-          userSelect: "none",
-          position: "relative",
-          textWrap: "nowrap",
-          ...style,
-        }}
+        className={classNames.item + (className ? ` ${className}` : "")}
         {...props}
       >
-        {hotKey && (
-          <div
-            style={{
-              width: "fit-content",
-              height: `1em`,
-              position: "absolute",
-              right: 0,
-            }}
-          >
-            {hotKey}
-          </div>
-        )}
+        {hotKey && <div className={classNames.hotKey}>{hotKey}</div>}
         {children}
       </div>
     </DropdownMenuItem>

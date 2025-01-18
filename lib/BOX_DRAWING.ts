@@ -86,6 +86,7 @@ export const CONNECTION = {
 } as const;
 
 export enum SHADE {
+  NONE,
   LIGHT_SHADE = "░",
   MEDIUM_SHADE = "▒",
   DARK_SHADE = "▓",

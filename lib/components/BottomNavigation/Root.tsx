@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SizeContext } from "lib/components/TUIRoot/SizeContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { ColorsContext } from "./ColorsContext";
+import classNames from "./BottomNavigation.module.css";
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   hotKeyColor?: ANSI_COLOR;
@@ -26,22 +27,17 @@ export function Root({
   ref = null,
   style,
   children,
+  className,
   ...props
 }: RootProps) {
   const { tWidth, tHeight } = useContext(SizeContext);
 
   return (
     <div
+      className={classNames.root + (className ? ` ${className}` : "")}
       style={{
-        position: "absolute",
         top: `calc(${tHeight - 1} * 1em)`,
-        left: 0,
-        height: `1em`,
         width: `calc(${tWidth} * 1ch)`,
-        display: "flex",
-        flexWrap: "nowrap",
-        overflow: "hidden",
-        userSelect: "none",
         ...style,
       }}
       ref={ref}

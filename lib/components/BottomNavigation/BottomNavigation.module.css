@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  user-select: none;
+  left: 0;
+  height: 1em;
+  position: absolute;
+}

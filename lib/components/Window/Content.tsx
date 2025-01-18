@@ -1,5 +1,6 @@
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { colorNameToCss } from "lib/UTILS";
+import classNames from "./Content.module.css";
 
 export interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
@@ -11,17 +12,14 @@ export function Content({
   children,
   style,
   ref = null,
+  className,
   ...props
 }: ContentProps) {
-
   //!TODO: Implement scrolling
   return (
     <div
+      className={classNames.content + (className ? ` ${className}` : "")}
       style={{
-        width: "100%",
-        height: "100%",
-        backgroundColor: "transparent",
-        overflow: "visible",
         color: colorNameToCss(color),
         ...style,
       }}

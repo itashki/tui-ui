@@ -1,0 +1,7 @@
+.horizontalSeparator {
+  position: relative;
+  user-select: none;
+}
+.horizontalSeparator > span {
+  position: absolute;
+}

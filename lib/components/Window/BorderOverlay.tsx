@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { BorderContext } from "./BorderContext";
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import { ANSI_COLOR } from "lib/ANSI_COLORS";
+import classNames from "./BorderOverlay.module.css";
 
 export interface BorderOverlayProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -23,6 +24,7 @@ export function BorderOverlay({
   children,
   style,
   ref = null,
+  className,
   ...props
 }: BorderOverlayProps) {
   const { marginTop, marginBottom, marginLeft, marginRight, borderColor } =
@@ -33,17 +35,16 @@ export function BorderOverlay({
     case SIDE.TOP:
       return (
         <div
+          className={
+            classNames.horizontalBorderOverlay +
+            (className ? ` ${className}` : "")
+          }
           style={{
-            position: "absolute",
             top: `calc(${marginTop - coverOffset} * 1em)`,
             left: `calc(${marginLeft + start} * 1ch)`,
             width: `calc(${length} * 1ch)`,
-            height: `1em`,
             backgroundColor: colorNameToCss(backgroundColor),
             color: colorNameToCss(color ?? borderColor),
-            display: "flex",
-            flexDirection: "row",
-            userSelect: "none",
             ...style,
           }}
           ref={ref}
@@ -55,17 +56,16 @@ export function BorderOverlay({
     case SIDE.BOTTOM:
       return (
         <div
+          className={
+            classNames.horizontalBorderOverlay +
+            (className ? ` ${className}` : "")
+          }
           style={{
-            position: "absolute",
             bottom: `calc(${marginBottom - coverOffset} * 1em)`,
             left: `calc(${marginLeft + start} * 1ch)`,
             width: `calc(${length} * 1ch)`,
-            height: `1em`,
             backgroundColor: colorNameToCss(backgroundColor),
             color: colorNameToCss(color ?? borderColor),
-            display: "flex",
-            flexDirection: "row",
-            userSelect: "none",
             ...style,
           }}
           ref={ref}
@@ -77,17 +77,16 @@ export function BorderOverlay({
     case SIDE.LEFT:
       return (
         <div
+          className={
+            classNames.verticalBorderOverlay +
+            (className ? ` ${className}` : "")
+          }
           style={{
-            position: "absolute",
             top: `calc(${marginTop + start} * 1em)`,
             left: `calc(${marginLeft - coverOffset} * 1ch)`,
-            width: `1ch`,
             height: `calc(${length} * 1em)`,
             backgroundColor: colorNameToCss(backgroundColor),
             color: colorNameToCss(color ?? borderColor),
-            display: "flex",
-            flexDirection: "column",
-            userSelect: "none",
             ...style,
           }}
           ref={ref}
@@ -99,17 +98,16 @@ export function BorderOverlay({
     case SIDE.RIGHT:
       return (
         <div
+          className={
+            classNames.verticalBorderOverlay +
+            (className ? ` ${className}` : "")
+          }
           style={{
-            position: "absolute",
             top: `calc(${marginTop + start} * 1em)`,
             right: `calc(${marginRight - coverOffset} * 1ch)`,
-            width: `1ch`,
             height: `calc(${length} * 1em)`,
             backgroundColor: colorNameToCss(backgroundColor),
             color: colorNameToCss(color ?? borderColor),
-            display: "flex",
-            flexDirection: "column",
-            userSelect: "none",
             ...style,
           }}
           ref={ref}

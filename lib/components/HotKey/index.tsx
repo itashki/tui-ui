@@ -2,6 +2,7 @@ import { ANSI_COLOR } from "lib/ANSI_COLORS";
 import { useContext, useEffect } from "react";
 import { RegisterHotKeyContext } from "../TUIRoot/RegisterHotKeyContext";
 import { colorNameToCss } from "lib/UTILS";
+import classNames from "./HotKey.module.css";
 
 interface HotKeyProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ANSI_COLOR;
@@ -15,6 +16,7 @@ export function HotKey({
   callback = () => { },
   color = ANSI_COLOR.RED,
   style,
+  className,
   children,
   ref,
   ...props
@@ -29,9 +31,9 @@ export function HotKey({
   return (
     <span
       aria-keyshortcuts={hotKey}
+      className={classNames.hotKey + (className ? ` ${className}` : "")}
       style={{
         color: colorNameToCss(color),
-        display: "inline-block",
         ...style,
       }}
       ref={ref}

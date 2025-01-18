@@ -1,0 +1,15 @@
+.borderOverlay {
+  position: absolute;
+  display: flex;
+  user-select: none;
+}
+.horizontalBorderOverlay {
+  composes: borderOverlay;
+  height: 1em;
+  flex-direction: row;
+}
+.verticalBorderOverlay {
+  composes: borderOverlay;
+  width: 1em;
+  flex-direction: column;
+}
